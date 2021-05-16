@@ -1,8 +1,8 @@
 {
-  "name": "DaisyXMusic",
+  "name": "ShasaMusic",
   "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by PyTgCalls.",
   "keywords": ["music", "voicechat", "telegram"],
-  "repository": "https://github.com/TeamDaisyX/DaisyXMusic",
+  "repository": "https://github.com/MdNoor786/ShasaMusic",
   "stack": "container",
   "env": {
     "SESSION_NAME": {
@@ -26,7 +26,7 @@
     "BG_IMAGE": {
       "description": "BG image of bot (Use transparent one)[IGNORE].",
       "required": false,
-      "value": " https://telegra.ph/file/dcfdf612e499eef0e0b1f.png"
+      "value": " https://telegra.ph/file/38cf0d094b8b0c532eb07.jpg"
     },     
     "UPDATES_CHANNEL": {
       "description": "Updates Channel [IGNORE].",
