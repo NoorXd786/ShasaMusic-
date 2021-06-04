@@ -2,6 +2,8 @@
   "name": "ShasaMusic",
   "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by PyTgCalls.",
   "keywords": ["music", "voicechat", "telegram"],
+   
+  "logo": "https://telegra.ph/file/79aa7603677fc11492cad.jpg",
   "repository": "https://github.com/MdNoor786/ShasaMusic",
   "stack": "container",
   "env": {
