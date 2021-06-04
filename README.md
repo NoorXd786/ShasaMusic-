@@ -1,8 +1,8 @@
-<h1 align="centre">SHASAMUSIC V3.5 🎵</h1>
+<h1 align="centre">SHASAMUSIC V1.0 🎵</h1>
 
 ### A bot that can play music on telegram group's voice call
 #### BASED ON [CALLSMUSIC](https://github.com/callsmusic/callsmusic)
-# Available on telegram as @missShasa_Bot
+# Available on telegram as @Shasa_Robot
 
 <p align="center">
   <img src="https://telegra.ph/file/38cf0d094b8b0c532eb07.jpg">
@@ -58,7 +58,7 @@ You can set Channel Music Play like this:
 
 ### Deploy To Heroku</h4>
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/MdNoor786/ShasaMusic)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/MdNoor786/ShasaMusic-)
 
 Use [@DaisyXStringGeneratorBot](https://t.me/DaisyXStringGeneratorBot) to get pyrogram string session or [repl](https://repl.it/@SpEcHiDe/GenerateStringSession)
 
