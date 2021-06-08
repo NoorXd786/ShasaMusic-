@@ -1,4 +1,4 @@
-# DAISYXMUSIC- Telegram bot project
+# ShasaMUSIC- Telegram bot project
 # Copyright (C) 2021  Roj Serbest
 # Copyright (C) 2021  Inuka Asith
 # This program is free software: you can redistribute it and/or modify
@@ -27,14 +27,20 @@ que = {}
 SESSION_NAME = getenv("SESSION_NAME", "session")
 BOT_TOKEN = getenv("BOT_TOKEN")
 BOT_NAME = getenv("BOT_NAME")
-UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "@ShasaUpdates")
-BG_IMAGE = getenv("BG_IMAGE", "https://telegra.ph/file/38cf0d094b8b0c532eb07.jpg")
+UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "LionXupdates")
+BG_IMAGE = getenv("BG_IMAGE", "https://telegra.ph/file/693fda7ab2f4be48856c8.jpg")
 admins = {}
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
-
+BOT_USERNAME = getenv("BOT_USERNAME")
+ASSISTANT_NAME = getenv("ASSISTANT_NAME", "Shasahelper")
+SUPPORT_GROUP = getenv("SUPPORT_GROUP", "ShasaSupport")
+PROJECT_NAME = getenv("PROJECT_NAME", "ShasaMusic v4")
+SOURCE_CODE = getenv("SOURCE_CODE", "github.com/TeamLion-X/Shasamusic")
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "7"))
-ARQ_API_KEY = getenv("ARQ_API_KEY", "VKSSQH-SRNJYZ-MSOJAI-QALESR-ARQ")
-COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ ? !").split())
+ARQ_API_KEY = getenv("ARQ_API_KEY", None)
+PMPERMIT = getenv("PMPERMIT", None)
+LOG_GRP = getenv("LOG_GRP", None)
+COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
 
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
