@@ -1,4 +1,4 @@
-<h1 align="centre">SHASAMUSIC V1.0 🎵</h1>
+<h1 align="centre">SHASAMUSIC V3.0 🎵</h1>
 
 ### A bot that can play music on telegram group's voice call
 #### BASED ON [CALLSMUSIC](https://github.com/callsmusic/callsmusic)
