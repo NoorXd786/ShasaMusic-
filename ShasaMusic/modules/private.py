@@ -16,10 +16,58 @@
 
 import logging
 from ShasaMusic.modules.msg import Messages as tr
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
-from ShasaMusic.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL,BOT_USERNAME
+from pyrogram import Client
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton
+from pyrogram.types import Message
+from ShasaMusic.config import SOURCE_CODE
+from ShasaMusic.config import ASSISTANT_NAME
+from ShasaMusic.config import PROJECT_NAME
+from ShasaMusic.config import SUPPORT_GROUP
+from ShasaMusic.config import UPDATES_CHANNEL
+from ShasaMusic.config import BOT_USERNAME
 logging.basicConfig(level=logging.INFO)
+
+@Client.on_message(filters.private & filters.incoming & filters.command(['vcstart']))
+def _start(client, message):
+    client.send_message(message.chat.id,
+        text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
+        parse_mode="markdown",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "➕ Add me to your Group 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
+                [
+                    InlineKeyboardButton(
+                        "📲 Updates", url=f"https://t.me/{UPDATES_CHANNEL}"), 
+                    InlineKeyboardButton(
+                        "💬 Support", url=f"https://t.me/{SUPPORT_GROUP}")
+                ],[
+                    InlineKeyboardButton(
+                        "🛠 Source Code 🛠", url=f"https://{SOURCE_CODE}")
+                ]
+            ]
+        ),
+        reply_to_message_id=message.message_id
+        )
+
+@Client.on_message(filters.command("vcstart") & ~filters.private & ~filters.channel)
+async def gstart(_, message: Message):
+    await message.reply_text(
+        f"""**🔴 {PROJECT_NAME} is online**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "💬 Support Chat", url=f"https://t.me/{SUPPORT_GROUP}"
+                    )
+                ]
+            ]
+        ),
+    )
+
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['vchelp']))
 def _help(client, message):
@@ -57,7 +105,7 @@ def map(pos):
             [InlineKeyboardButton(text = '📲 Updates', url=f"https://t.me/{UPDATES_CHANNEL}"),
              InlineKeyboardButton(text = '💬 Support', url=f"https://t.me/{SUPPORT_GROUP}")],
             [InlineKeyboardButton(text = '🛠 Source Code 🛠', url=f"https://{SOURCE_CODE}")],
-            [InlineKeyboardButton(text = '◀️', callback_data = f"vchelp+{pos-1}")]
+            [InlineKeyboardButton(text = '◀️', callback_data = f"help+{pos-1}")]
         ]
     else:
         button = [
@@ -76,7 +124,7 @@ async def ghelp(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "🟡 Click here for help 🟡", url=f"https://t.me/{BOT_USERNAME}?vchelp"
+                        "🟡 Click here for help 🟡", url=f"https://t.me/{BOT_USERNAME}?start"
                     )
                 ]
             ]

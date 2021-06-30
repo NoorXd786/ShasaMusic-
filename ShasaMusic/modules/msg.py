@@ -15,7 +15,11 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import os
-from ShasaMusic.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL
+from ShasaMusic.config import SOURCE_CODE
+from ShasaMusic.config import ASSISTANT_NAME
+from ShasaMusic.config import PROJECT_NAME
+from ShasaMusic.config import SUPPORT_GROUP
+from ShasaMusic.config import UPDATES_CHANNEL
 class Messages():
       START_MSG = "**Hello 👋 [{}](tg://user?id={})!**\n\n🤖 I am an advanced bot created for playing music in the voice chats of Telegram Groups & Channels.\n\n✅ Send me /help for more info."
       HELP_MSG = [
@@ -40,7 +44,8 @@ f"""
 1) Make me admin of your channel 
 2) Send /userbotjoinchannel in linked group
 3) Now send commands in linked group
-
+""",
+f"""
 **Commands**
 
 **=>> Song Playing 🎧**
@@ -64,7 +69,7 @@ f"""
 
 *Player cmd and all other cmds except /play, /current  and /playlist  are only for admins of the group.
 """,
-        
+
 f"""
 **=>> Channel Music Play 🛠**
 
@@ -90,7 +95,7 @@ channel is also can be used instead of c ( /cplay = /channelplay )
 2) Create a group with tittle: Channel Music: your_channel_id
 3) Add bot as Channel admin with full perms
 4) Add @{ASSISTANT_NAME} to the channel as an admin.
-5) Simply send commands in your group.
+5) Simply send commands in your group. (remember to use /ytplay instead /play)
 """,
 
 f"""
@@ -99,11 +104,26 @@ f"""
 - /musicplayer [on/off]: Enable/Disable Music player
 - /admincache: Updates admin info of your group. Try if bot isn't recognize admin
 - /userbotjoin: Invite @{ASSISTANT_NAME} Userbot to your chat
+""",
+f"""
+**=>> Song Download 🎸**
 
+- /video [song mame]: Download video song from youtube
+- /song [song name]: Download audio song from youtube
+- /saavn [song name]: Download song from saavn
+- /deezer [song name]: Download song from deezer
+
+**=>> Search Tools 📄**
+
+- /search [song name]: Search youtube for songs
+- /lyrics [song name]: Get song lyrics
+""",
+
+f"""
 **=>> Commands for Sudo Users ⚔️**
 
  - /userbotleaveall - remove assistant from all chats
- - /gcast <reply to message> - globally brodcast replied message to all chats
+ - /broadcast <reply to message> - globally brodcast replied message to all chats
  - /pmpermit [on/off] - enable/disable pmpermit message
 *Sudo Users can execute any command in any groups
 
