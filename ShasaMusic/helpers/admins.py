@@ -17,7 +17,8 @@
 
 from typing import List
 
-from pyrogram.types import Chat, User
+from pyrogram.types import Chat
+from pyrogram.types import User
 
 from ShasaMusic.function.admins import get as gett
 from ShasaMusic.function.admins import set
@@ -33,8 +34,8 @@ async def get_administrators(chat: Chat) -> List[User]:
         to_set = []
 
         for administrator in administrators:
-            # if administrator.can_manage_voice_chats:
-            to_set.append(administrator.user.id)
+            if administrator.can_manage_voice_chats:
+                to_set.append(administrator.user.id)
 
         set(chat.id, to_set)
         return await get_administrators(chat)
