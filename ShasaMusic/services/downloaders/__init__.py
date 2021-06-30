@@ -1,1 +1,3 @@
-from ShasaMusic.services.downloaders.youtube import download
+from ShasaMusic.services.downloaders import youtube
+
+__all__ = ["youtube"]
