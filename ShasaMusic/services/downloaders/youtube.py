@@ -24,7 +24,7 @@ from ShasaMusic.config import DURATION_LIMIT
 from ShasaMusic.helpers.errors import DurationLimitError
 
 ydl_opts = {
-    "format": "bestaudio/best",
+    "format": "bestaudio[ext=m4a]",
     "geo-bypass": True,
     "nocheckcertificate": True,
     "outtmpl": "downloads/%(id)s.%(ext)s",
