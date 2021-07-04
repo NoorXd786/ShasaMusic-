@@ -29,7 +29,7 @@ from ShasaMusic.config import UPDATES_CHANNEL
 from ShasaMusic.config import BOT_USERNAME
 logging.basicConfig(level=logging.INFO)
 
-@Client.on_message(filters.private & filters.incoming & filters.command(['start']))
+@Client.on_message(filters.private & filters.incoming & filters.command(['vcstart']))
 def _start(client, message):
     client.send_message(message.chat.id,
         text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
@@ -53,7 +53,7 @@ def _start(client, message):
         reply_to_message_id=message.message_id
         )
 
-@Client.on_message(filters.command("start") & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command("vcstart") & ~filters.private & ~filters.channel)
 async def gstart(_, message: Message):
     await message.reply_text(
         f"""**🔴 {PROJECT_NAME} is online**""",
@@ -69,7 +69,7 @@ async def gstart(_, message: Message):
     )
 
 
-@Client.on_message(filters.private & filters.incoming & filters.command(['help']))
+@Client.on_message(filters.private & filters.incoming & filters.command(['vchelp']))
 def _help(client, message):
     client.send_message(chat_id = message.chat.id,
         text = tr.HELP_MSG[1],
@@ -80,7 +80,7 @@ def _help(client, message):
         reply_to_message_id = message.message_id
     )
 
-help_callback_filter = filters.create(lambda _, __, query: query.data.startswith('help+'))
+help_callback_filter = filters.create(lambda _, __, query: query.data.startswith('vchelp+'))
 
 @Client.on_callback_query(help_callback_filter)
 def help_answer(client, callback_query):
@@ -96,7 +96,7 @@ def help_answer(client, callback_query):
 def map(pos):
     if(pos==1):
         button = [
-            [InlineKeyboardButton(text = '▶️', callback_data = "help+2")]
+            [InlineKeyboardButton(text = '▶️', callback_data = "vchelp+2")]
         ]
     elif(pos==len(tr.HELP_MSG)-1):
         url = f"https://t.me/{SUPPORT_GROUP}"
@@ -110,13 +110,13 @@ def map(pos):
     else:
         button = [
             [
-                InlineKeyboardButton(text = '◀️', callback_data = f"help+{pos-1}"),
-                InlineKeyboardButton(text = '▶️', callback_data = f"help+{pos+1}")
+                InlineKeyboardButton(text = '◀️', callback_data = f"vchelp+{pos-1}"),
+                InlineKeyboardButton(text = '▶️', callback_data = f"vchelp+{pos+1}")
             ],
         ]
     return button
 
-@Client.on_message(filters.command("help") & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command("vchelp") & ~filters.private & ~filters.channel)
 async def ghelp(_, message: Message):
     await message.reply_text(
         f"""**🙋‍♀️ Hello there! I can play music in the voice chats of telegram groups & channels.**""",
