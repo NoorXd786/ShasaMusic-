@@ -1,6 +1,4 @@
-from pyrogram import Client
+from ShasaMusic.services.queues import queues
+from ShasaMusic.services.callsmusic.callsmusic import pytgcalls, run
 
-from ShasaMusic import config
-
-client = Client(config.SESSION_NAME, config.API_ID, config.API_HASH)
-run = client.run
+__all__ = ["queues", "pytgcalls", "run"]
