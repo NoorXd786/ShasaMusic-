@@ -1,4 +1,4 @@
-# Shasamusic (Telegram bot project )
+# ShasaMusic (Telegram bot project )
 # Copyright (C) 2021  Inukaasith
 
 # This program is free software: you can redistribute it and/or modify
@@ -15,13 +15,11 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-from pyrogram import Client
-from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant
 import asyncio
-from ShasaMusic.helpers.decorators import authorized_users_only
-from ShasaMusic.helpers.decorators import errors
-from ShasaMusic.services.callsmusic import client as USER
+from ShasaMusic.helpers.decorators import authorized_users_only, errors
+from ShasaMusic.services.callsmusic.callsmusic import client as USER
 from ShasaMusic.config import SUDO_USERS
 
 @Client.on_message(filters.command(["userbotjoin"]) & ~filters.private & ~filters.bot)

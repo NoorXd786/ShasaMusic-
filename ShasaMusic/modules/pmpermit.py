@@ -1,4 +1,4 @@
-# Shasamusic (Telegram bot project )
+# ShasaMusic (Telegram bot project )
 # Copyright (C) 2021  Inukaasith
 
 # This program is free software: you can redistribute it and/or modify
@@ -16,11 +16,10 @@
 
 from pyrogram import Client
 import asyncio
-from ShasaMusic.config import SUDO_USERS
-from ShasaMusic.config import PMPERMIT
+from ShasaMusic.config import SUDO_USERS, PMPERMIT
 from pyrogram import filters
 from pyrogram.types import Message
-from ShasaMusic.services.callsmusic import client as USER
+from ShasaMusic.services.callsmusic.callsmusic import client as USER
 
 PMSET =True
 pchats = []
@@ -81,4 +80,4 @@ async def rmpmPermiat(client: USER, message: Message):
         pchats.remove(chat_id)
         await message.reply_text("Dispprooved to PM")
         return
-    message.continue_propagation()
+    message.continue_propagation()    
