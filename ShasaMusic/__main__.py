@@ -18,10 +18,7 @@
 import requests
 from pyrogram import Client as Bot
 
-from ShasaMusic.config import API_HASH
-from ShasaMusic.config import API_ID
-from ShasaMusic.config import BG_IMAGE
-from ShasaMusic.config import BOT_TOKEN
+from ShasaMusic.config import API_HASH, API_ID, BG_IMAGE, BOT_TOKEN
 from ShasaMusic.services.callsmusic import run
 
 response = requests.get(BG_IMAGE)
