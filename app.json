@@ -30,7 +30,7 @@
     "SUPPORT_GROUP": {
       "description": "Your MusicPlayer support group without @ [Leave this if you don't have one]",
       "required": false,
-      "value": "ShasaSupport"
+      "value": "ShasaSupportport_Official"
     },
     "PROJECT_NAME": {
       "description": "Your MusicPlayer project Name.",
@@ -49,12 +49,12 @@
     "BG_IMAGE": {
       "description": "BG image of bot (Use transparent one) [IGNORE].",
       "required": false,
-      "value": " https://telegra.ph/file/693fda7ab2f4be48856c8.jpg"
+      "value": "https://telegra.ph/file/dcfdf612e499eef0e0b1f.png"
     },     
     "UPDATES_CHANNEL": {
       "description": "Updates Channel without @ [Leave this if you don't have one].",
       "required": false,
-      "value": "LionXupdates"
+      "value": "LionXUpdates"
     },    
     "API_ID": {
       "description": "App ID from my.telegram.org/apps",
