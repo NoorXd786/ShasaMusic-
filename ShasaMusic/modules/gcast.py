@@ -15,15 +15,17 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-from pyrogram import Client, filters
-from pyrogram.errors import UserAlreadyParticipant
 import asyncio
+
+from pyrogram import Client, filters
+
 from ShasaMusic.config import SUDO_USERS
+
 
 @Client.on_message(filters.command(["gcast"]))
 async def bye(client, message):
-    sent=0
-    failed=0
+    sent = 0
+    failed = 0
     if message.from_user.id in SUDO_USERS:
         lol = await message.reply("Starting Gcast")
         if not message.reply_to_message:
@@ -33,10 +35,16 @@ async def bye(client, message):
         async for dialog in client.iter_dialogs():
             try:
                 await client.send_message(dialog.chat.id, msg)
-                sent = sent+1
-                await lol.edit(f"Gcasting.. Sent: {sent} chats. Failed: {failed} chats.")
+                sent = sent + 1
+                await lol.edit(
+                    f"Gcasting.. Sent: {sent} chats. Failed: {failed} chats."
+                )
             except:
-                failed=failed+1
-                await lol.edit(f"Gcasting.. Sent: {sent} chats. Failed: {failed} chats.")
+                failed = failed + 1
+                await lol.edit(
+                    f"Gcasting.. Sent: {sent} chats. Failed: {failed} chats."
+                )
             await asyncio.sleep(3)
-        await message.reply_text(f"Gcasted message to {sent} chats. Failed {failed} chats.")
+        await message.reply_text(
+            f"Gcasted message to {sent} chats. Failed {failed} chats."
+        )
