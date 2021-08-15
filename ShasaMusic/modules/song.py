@@ -103,7 +103,7 @@ def song(client, message):
     except Exception as e:
         print(e)
 
-        
+
 # Many thanks to friday userbot project github.com/devsexpo/fridayuserbot
 # Copied from https://github.com/StarkGang/FridayUserbot/blob/master/main_startup/helper_func/basic_helpers.py
 
@@ -117,6 +117,7 @@ def song(client, message):
 # All rights reserved.
 
 # Modified by @InukaAsith
+
 
 def get_text(message: Message) -> [None, str]:
     text_to_return = message.text
@@ -241,6 +242,7 @@ def time_formatter(milliseconds: int) -> str:
     )
     return tmp[:-2]
 
+
 # ===================================================================================
 
 
@@ -320,7 +322,7 @@ async def jssong(_, message):
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
     """
-    
+
     try:
         songs = await arq.saavn(query)
         if not songs.ok:
@@ -330,8 +332,8 @@ async def jssong(_, message):
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
 
-# ==================================================================================================        
-        
+        # ==================================================================================================
+
         await m.edit("Downloading")
         song = await download_song(slink)
         await m.edit("Uploading")

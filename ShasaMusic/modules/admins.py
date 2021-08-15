@@ -19,11 +19,10 @@
 # Added /auth and /deauth by azimazizov9150 <https://github.com/azimazizov9150>
 
 from asyncio import QueueEmpty
-from ShasaMusic.config import que
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from ShasaMusic.function.admins import admins
 from ShasaMusic.helpers.channelmusic import get_chat_id
 from ShasaMusic.helpers.decorators import authorized_users_only, errors
 from ShasaMusic.helpers.filters import command, other_filters
@@ -31,6 +30,7 @@ from ShasaMusic.services.callsmusic import callsmusic
 from ShasaMusic.services.queues import queues
 
 # By azimazizov9150 <https://github.com/azimazizov9150>
+
 
 @Client.on_message(filters.command("admincache"))
 async def update_admin(client, message):
@@ -74,7 +74,7 @@ async def deautenticate(client, message):
     else:
         await message.reply("user already deauthorized!")
 
-        
+
 @Client.on_message(command("pause") & other_filters)
 @errors
 @authorized_users_only
@@ -134,9 +134,7 @@ async def skip(_, message: Message):
         if queues.is_empty(chat_id):
             callsmusic.pytgcalls.leave_group_call(chat_id)
         else:
-            callsmusic.pytgcalls.change_stream(
-                chat_id, queues.get(chat_id)["file"]
-            )
+            callsmusic.pytgcalls.change_stream(chat_id, queues.get(chat_id)["file"])
 
     qeue = que.get(chat_id)
     if qeue:

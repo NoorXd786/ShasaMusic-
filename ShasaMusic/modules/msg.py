@@ -1,6 +1,6 @@
 # ShasaMusic (Telegram bot project )
 
-# Copyright (C) 2021  Bemro-Official 
+# Copyright (C) 2021  Bemro-Official
 # Copyright (C) 2021  Inukaasith (Modified)
 # Copyright (C) 2021  Technical-Hunter (Modified)
 
@@ -17,21 +17,21 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import os
-from ShasaMusic.config import SOURCE_CODE,ASSISTANT_NAME,PROJECT_NAME,SUPPORT_GROUP,UPDATES_CHANNEL
-class Messages():
-      START_MSG = "**Hello 👋 [{}](tg://user?id={})!**\n\n🤖 I am an advanced bot created for playing music in the voice chats of Telegram Groups & Channels.\n\n✅ Send me /help for more info."
-      HELP_MSG = [
+from ShasaMusic.config import ASSISTANT_NAME, PROJECT_NAME
+
+
+class Messages:
+    START_MSG = "**Hello 👋 [{}](tg://user?id={})!**\n\n🤖 I am an advanced bot created for playing music in the voice chats of Telegram Groups & Channels.\n\n✅ Send me /help for more info."
+    HELP_MSG = [
         ".",
-f"""
+        f"""
 **Hey 👋 Welcome back to {PROJECT_NAME}
 
 ⚪️ {PROJECT_NAME} can play music in your group's voice chat as well as channel voice chats
 
 ⚪️ Assistant name >> @{ASSISTANT_NAME}\n\nClick next for instructions**
 """,
-
-f"""
+        f"""
 **Setting up**
 
 1) Make bot admin (Group and in channel if use cplay)
@@ -66,8 +66,7 @@ f"""
 
 *Player cmd and all other cmds except /play, /current  and /playlist  are only for admins of the group.
 """,
-        
-f"""
+        f"""
 **=>> Channel Music Play 🛠**
 
 ⚪️ For linked group admins only:
@@ -93,8 +92,7 @@ channel is also can be used instead of c ( /cplay = /channelplay )
 4) Add @{ASSISTANT_NAME} to the channel as an admin.
 5) Simply send commands in your group.
 """,
-
-f"""
+        f"""
 **=>> More tools 🧑‍🔧**
 
 - /musicplayer [on/off]: Enable/Disable Music player
@@ -111,5 +109,5 @@ Authorized users can execute admin commands in authorized group
  - /pmpermit [on/off] - enable/disable pmpermit message
 *Sudo Users can execute any command in any groups
 
-"""
-      ]
+""",
+    ]
