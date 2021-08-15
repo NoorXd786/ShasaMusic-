@@ -25,7 +25,9 @@ from ShasaMusic.config import DURATION_LIMIT
 from ShasaMusic.helpers.errors import DurationLimitError
 
 ydl_opts = {
-    "format": "bestaudio[ext=m4a]",
+    "format": "bestaudio/best",
+    "verbose": True,
+    "addmetadata": True,
     "geo-bypass": True,
     "nocheckcertificate": True,
     "outtmpl": "downloads/%(id)s.%(ext)s",
@@ -35,6 +37,7 @@ ydl = YoutubeDL(ydl_opts)
 
 
 def download(url: str) -> str:
+    global ydl
     info = ydl.extract_info(url, False)
     duration = round(info["duration"] / 60)
 
