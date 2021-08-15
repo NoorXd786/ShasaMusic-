@@ -1,4 +1,4 @@
-# SHASAMUSIC- Telegram bot project
+# ShasaMusic- Telegram bot project
 # Copyright (C) 2021  Roj Serbest
 # Copyright (C) 2021  Inuka Asith
 # This program is free software: you can redistribute it and/or modify
@@ -27,19 +27,20 @@ que = {}
 SESSION_NAME = getenv("SESSION_NAME", "session")
 BOT_TOKEN = getenv("BOT_TOKEN")
 BOT_NAME = getenv("BOT_NAME")
-UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "LionXupdates")
-BG_IMAGE = getenv("BG_IMAGE", "https://telegra.ph/file/dcfdf612e499eef0e0b1f.png")
+UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "LionXUpdates")
+BG_IMAGE = getenv("BG_IMAGE", "https://telegra.ph/file/dc85bcdb2f27218033b8c.jpg")
 admins = {}
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
 BOT_USERNAME = getenv("BOT_USERNAME")
-ASSISTANT_NAME = getenv("ASSISTANT_NAME", "Shasahelper")
+ASSISTANT_NAME = getenv("ASSISTANT_NAME", "NA")
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "ShasaSupport")
 PROJECT_NAME = getenv("PROJECT_NAME", "ShasaMusic v4")
 SOURCE_CODE = getenv("SOURCE_CODE", "github.com/MdNoor786/ShasaMusic")
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "7"))
 ARQ_API_KEY = getenv("ARQ_API_KEY", None)
 PMPERMIT = getenv("PMPERMIT", None)
+PMMSG = getenv("PMMSG", f"Hi there, This is a music assistant service of @{BOT_USERNAME}.\n\n ❗️ Rules:\n   - No chatting allowed\n   - No spam allowed \n\n 👉 **SEND GROUP INVITE LINK OR USERNAME IF USERBOT CAN T JOIN YOUR GROUP.**\n\n ⚠️ Disclamer: If you are sending a message here it means admin will see your message and join chat\n    - Don t add this user to secret groups.\n   - Don t Share private info here\n\n")
 LOG_GRP = getenv("LOG_GRP", None)
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
 
