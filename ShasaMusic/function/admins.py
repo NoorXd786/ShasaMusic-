@@ -1,6 +1,6 @@
 from typing import Dict, List
-from ShasaMusic.config import admins
 
+from ShasaMusic.config import admins
 
 admins: Dict[int, List[int]] = {}
 
