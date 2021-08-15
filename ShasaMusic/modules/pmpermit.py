@@ -14,15 +14,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from pyrogram import Client, filters
+from pyrogram import Client
+import asyncio
+from ShasaMusic.config import SUDO_USERS, PMPERMIT, PMMSG
+from pyrogram import filters
 from pyrogram.types import Message
-
-from ShasaMusic.config import PMPERMIT, SUDO_USERS
 from ShasaMusic.services.callsmusic.callsmusic import client as USER
 
-PMSET = True
+PMSET =True
 pchats = []
-
 
 @USER.on_message(filters.text & filters.private & ~filters.me & ~filters.bot)
 async def pmPermit(client: USER, message: Message):
@@ -31,12 +31,15 @@ async def pmPermit(client: USER, message: Message):
             chat_id = message.chat.id
             if chat_id in pchats:
                 return
-            await USER.send_message(
-                message.chat.id,
-                "Hi there, This is a music assistant service .\n\n ❗️ Rules:\n   - No chatting allowed\n   - No spam allowed \n\n 👉 **SEND GROUP INVITE LINK OR USERNAME IF USERBOT CAN'T JOIN YOUR GROUP.**\n\n ⚠️ Disclamer: If you are sending a message here it means admin will see your message and join chat\n    - Don't add this user to secret groups.\n   - Don't Share private info here\n\n",
-            )
-            return
-
+            try:
+              await USER.send_message(
+                  message.chat.id,
+                  PMMSG
+              )
+              return
+            except:
+              return
+    
 
 @Client.on_message(filters.command(["/pmpermit"]))
 async def bye(client: Client, message: Message):
@@ -53,17 +56,15 @@ async def bye(client: Client, message: Message):
             await message.reply_text("Pmpermit turned off")
             return
 
-
-@USER.on_message(filters.text & filters.private & filters.me)
+@USER.on_message(filters.text & filters.private & filters.me)        
 async def autopmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
     if not chat_id in pchats:
         pchats.append(chat_id)
         await message.reply_text("Approoved to PM due to outgoing messages")
         return
-    message.continue_propagation()
-
-
+    message.continue_propagation()    
+    
 @USER.on_message(filters.command("a", [".", ""]) & filters.me & filters.private)
 async def pmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
@@ -71,8 +72,8 @@ async def pmPermiat(client: USER, message: Message):
         pchats.append(chat_id)
         await message.reply_text("Approoved to PM")
         return
-    message.continue_propagation()
-
+    message.continue_propagation()    
+    
 
 @USER.on_message(filters.command("da", [".", ""]) & filters.me & filters.private)
 async def rmpmPermiat(client: USER, message: Message):
@@ -81,4 +82,4 @@ async def rmpmPermiat(client: USER, message: Message):
         pchats.remove(chat_id)
         await message.reply_text("Dispprooved to PM")
         return
-    message.continue_propagation()
+    message.continue_propagation()    

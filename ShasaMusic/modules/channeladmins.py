@@ -1,5 +1,7 @@
 # Calls Music 1 - Telegram bot for streaming audio in group calls
 # Copyright (C) 2021  Roj Serbest
+# Copyright (C) 2021  InukaAsith & Technical-Hunter (Optimized for channel play)
+
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -16,28 +18,29 @@
 
 
 from asyncio import QueueEmpty
-
+from ShasaMusic.config import que
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from ShasaMusic.function.admins import set
+from ShasaMusic.helpers.channelmusic import get_chat_id
 from ShasaMusic.helpers.decorators import authorized_users_only, errors
+from ShasaMusic.helpers.filters import command, other_filters
 from ShasaMusic.services.callsmusic import callsmusic
+from ShasaMusic.services.queues import queues
 
 
-@Client.on_message(
-    filters.command(["channelpause", "cpause"]) & filters.group & ~filters.edited
-)
+@Client.on_message(filters.command(["channelpause","cpause"]) & filters.group & ~filters.edited)
 @errors
 @authorized_users_only
 async def pause(_, message: Message):
     try:
-        conchat = await _.get_chat(message.chat.id)
-        conid = conchat.linked_chat.id
-        chid = conid
+      conchat = await _.get_chat(message.chat.id)
+      conid = conchat.linked_chat.id
+      chid = conid
     except:
-        await message.reply("Is chat even linked")
-        return
+      await message.reply("Is chat even linked")
+      return    
     chat_id = chid
     if (chat_id not in callsmusic.pytgcalls.active_calls) or (
         callsmusic.pytgcalls.active_calls[chat_id] == "paused"
@@ -48,19 +51,17 @@ async def pause(_, message: Message):
         await message.reply_text("▶️ Paused!")
 
 
-@Client.on_message(
-    filters.command(["channelresume", "cresume"]) & filters.group & ~filters.edited
-)
+@Client.on_message(filters.command(["channelresume","cresume"]) & filters.group & ~filters.edited)
 @errors
 @authorized_users_only
 async def resume(_, message: Message):
     try:
-        conchat = await _.get_chat(message.chat.id)
-        conid = conchat.linked_chat.id
-        chid = conid
+      conchat = await _.get_chat(message.chat.id)
+      conid = conchat.linked_chat.id
+      chid = conid
     except:
-        await message.reply("Is chat even linked")
-        return
+      await message.reply("Is chat even linked")
+      return    
     chat_id = chid
     if (chat_id not in callsmusic.pytgcalls.active_calls) or (
         callsmusic.pytgcalls.active_calls[chat_id] == "playing"
@@ -71,25 +72,23 @@ async def resume(_, message: Message):
         await message.reply_text("⏸ Resumed!")
 
 
-@Client.on_message(
-    filters.command(["channelend", "cend"]) & filters.group & ~filters.edited
-)
+@Client.on_message(filters.command(["channelend","cend"]) & filters.group & ~filters.edited)
 @errors
 @authorized_users_only
 async def stop(_, message: Message):
     try:
-        conchat = await _.get_chat(message.chat.id)
-        conid = conchat.linked_chat.id
-        chid = conid
+      conchat = await _.get_chat(message.chat.id)
+      conid = conchat.linked_chat.id
+      chid = conid
     except:
-        await message.reply("Is chat even linked")
-        return
+      await message.reply("Is chat even linked")
+      return    
     chat_id = chid
     if chat_id not in callsmusic.pytgcalls.active_calls:
         await message.reply_text("❗ Nothing is streaming!")
     else:
         try:
-            callsmusic.queues.clear(chat_id)
+            queues.clear(chat_id)
         except QueueEmpty:
             pass
 
@@ -97,31 +96,29 @@ async def stop(_, message: Message):
         await message.reply_text("❌ Stopped streaming!")
 
 
-@Client.on_message(
-    filters.command(["channelskip", "cskip"]) & filters.group & ~filters.edited
-)
+@Client.on_message(filters.command(["channelskip","cskip"]) & filters.group & ~filters.edited)
 @errors
 @authorized_users_only
 async def skip(_, message: Message):
     global que
     try:
-        conchat = await _.get_chat(message.chat.id)
-        conid = conchat.linked_chat.id
-        chid = conid
+      conchat = await _.get_chat(message.chat.id)
+      conid = conchat.linked_chat.id
+      chid = conid
     except:
-        await message.reply("Is chat even linked")
-        return
+      await message.reply("Is chat even linked")
+      return    
     chat_id = chid
     if chat_id not in callsmusic.pytgcalls.active_calls:
         await message.reply_text("❗ Nothing is playing to skip!")
     else:
-        callsmusic.queues.task_done(chat_id)
+        queues.task_done(chat_id)
 
-        if callsmusic.queues.is_empty(chat_id):
+        if queues.is_empty(chat_id):
             callsmusic.pytgcalls.leave_group_call(chat_id)
         else:
             callsmusic.pytgcalls.change_stream(
-                chat_id, callsmusic.queues.get(chat_id)["file"]
+                chat_id, queues.get(chat_id)["file"]
             )
 
     qeue = que.get(chat_id)
@@ -136,12 +133,12 @@ async def skip(_, message: Message):
 @errors
 async def admincache(client, message: Message):
     try:
-        conchat = await client.get_chat(message.chat.id)
-        conid = conchat.linked_chat.id
-        chid = conid
+      conchat = await client.get_chat(message.chat.id)
+      conid = conchat.linked_chat.id
+      chid = conid
     except:
-        await message.reply("Is chat even linked")
-        return
+      await message.reply("Is chat even linked")
+      return
     set(
         chid,
         [
