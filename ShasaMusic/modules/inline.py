@@ -23,19 +23,17 @@ async def inline(client: Client, query: InlineQuery):
     else:
         search = VideosSearch(search_query, limit=50)
 
-        for result in search.result()["result"]:
-            answers.append(
-                InlineQueryResultArticle(
-                    title=result["title"],
-                    description="{}, {} views.".format(
-                        result["duration"], result["viewCount"]["short"]
-                    ),
-                    input_message_content=InputTextMessageContent(
-                        "https://www.youtube.com/watch?v={}".format(result["id"])
-                    ),
-                    thumb_url=result["thumbnails"][0]["url"],
-                )
+        answers.extend(
+            InlineQueryResultArticle(
+                title=result["title"],
+                description=f'{result["duration"]}, {result["viewCount"]["short"]} views.',
+                input_message_content=InputTextMessageContent(
+                    f'https://www.youtube.com/watch?v={result["id"]}'
+                ),
+                thumb_url=result["thumbnails"][0]["url"],
             )
+            for result in search.result()["result"]
+        )
 
         try:
             await query.answer(results=answers, cache_time=0)
