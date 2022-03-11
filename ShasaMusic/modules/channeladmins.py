@@ -147,9 +147,7 @@ async def admincache(client, message: Message):
         chid,
         (
             member.user
-            for member in await conchat.linked_chat.get_members(
-                filter="administrators"
-            )
+            for member in await conchat.linked_chat.get_members(filter="administrators")
         ),
     )
 

@@ -132,13 +132,13 @@ def get_text(message: Message) -> [None, str]:
 def humanbytes(size):
     if not size:
         return ""
-    power = 2 ** 10
+    power = 2**10
     raised_to_pow = 0
     dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
     while size > power:
         size /= power
         raised_to_pow += 1
-    return f'{str(round(size, 2))} {dict_power_n[raised_to_pow]}B'
+    return f"{str(round(size, 2))} {dict_power_n[raised_to_pow]}B"
 
 
 async def progress(current, total, message, start, type_of_ps, file_name=None):
@@ -212,7 +212,7 @@ def get_readable_time(seconds: int) -> int:
     for x in range(len(time_list)):
         time_list[x] = str(time_list[x]) + time_suffix_list[x]
     if len(time_list) == 4:
-        ping_time += f'{time_list.pop()}, '
+        ping_time += f"{time_list.pop()}, "
 
     time_list.reverse()
     ping_time += ":".join(time_list)
@@ -226,11 +226,11 @@ def time_formatter(milliseconds: int) -> str:
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     tmp = (
-        (f'{str(days)} day(s), ' if days else "")
-        + (f'{str(hours)} hour(s), ' if hours else "")
-        + (f'{str(minutes)} minute(s), ' if minutes else "")
-        + (f'{str(seconds)} second(s), ' if seconds else "")
-        + (f'{str(milliseconds)} millisecond(s), ' if milliseconds else "")
+        (f"{str(days)} day(s), " if days else "")
+        + (f"{str(hours)} hour(s), " if hours else "")
+        + (f"{str(minutes)} minute(s), " if minutes else "")
+        + (f"{str(seconds)} second(s), " if seconds else "")
+        + (f"{str(milliseconds)} millisecond(s), " if milliseconds else "")
     )
 
     return tmp[:-2]
@@ -275,7 +275,7 @@ is_downloading = False
 
 def time_to_seconds(time):
     stringt = str(time)
-    return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
+    return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
 @Client.on_message(filters.command("saavn") & ~filters.edited)
